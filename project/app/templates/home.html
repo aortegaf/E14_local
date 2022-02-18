@@ -1,0 +1,68 @@
+<html lang="en">
+    <head>
+        <title>app</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <br/><br/><br/>
+            <center>
+            <h2>E14 INFOMETRIKA</h2><br/>
+            <h4>Encuentra algún candidato aquí:</h4>
+            </center>  
+            <input class="form-control" id="myInput" type="text" placeholder="Buscar.."><br>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>#votos</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                    {%for person in people%}
+                        <tr>
+                            <td>{{person.name}}</td>
+                            <td>{{person.votes}}</td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+
+            <br/><br/><br/>
+            <center>
+            <h4>Ingresar nuevo:</h4>
+            <button type="button" class="btn btn-link" onclick="location.href = 'http://127.0.0.1:8000/api/person/';"><strong>CANDIDATO</strong></button>
+            </center>
+
+        </div>
+    </body>
+</html>
+    
+<script>
+    $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    })
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+    
+
